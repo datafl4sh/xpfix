@@ -37,3 +37,8 @@ and run with
      LD_PRELOAD=./xpfix.so ./X-Plane-x86_64
 ```
 
+If you own XPlane via Steam, set the launch option to:
+(it doesn't work with a space in the path)
+```
+    LD_PRELOAD="/path/to/xpfix.so" %command%
+```

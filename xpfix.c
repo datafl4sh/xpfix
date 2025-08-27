@@ -10,14 +10,14 @@
  *
  * X-Plane 11 gets stuck on "Will init net" on Linux kernels >= 6.9 and
  * this apparently happens because of netlink modifications.
- * 
+ *
  * A quick `strace` shows that it is on a recvfrom on a netlink socket
  * where X-Plane gets stuck:
  *
  *   socket(AF_NETLINK, SOCK_RAW, NETLINK_ROUTE) = 90
  *   getpid()                                = 1923236
  *   sendto(90, [{nlmsg_len=24, nlmsg_type=0x16  [cut]
- *   recvfrom(90, [[{nlmsg_len=72, nlmsg_type=RTM_NEWADDR, [cut] 
+ *   recvfrom(90, [[{nlmsg_len=72, nlmsg_type=RTM_NEWADDR, [cut]
  *   recvfrom(90,    <--gets stuck here
  *
  * The idea is to track all the socket() calls requesting an AF_NETLINK
@@ -63,7 +63,7 @@ static int socks[MAX_SOCK];
 
 void __attribute__((constructor)) init()
 {
-    printf("[XPFIX] init\n");
+    // printf("[XPFIX] init\n");
     for (int i = 0; i < MAX_SOCK; i++)
         socks[i] = 0;
 }
